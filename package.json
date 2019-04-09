@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "getusermedia": "^2.0.1",
+    "next": "^8.0.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "simple-peer": "^9.3.0",
+    "simple-signal-client": "^2.1.0",
+    "socket.io": "^2.2.0",
+    "uuid": "^3.3.2",
+    "wrtc": "^0.3.7"
+  }
+}
