@@ -1,0 +1,275 @@
+body{
+  margin:0;
+  font-size: 12px;
+}
+
+.connection-id{
+  padding: 0em 2em;
+  border-radius: 4em;
+  height:4em;
+  box-sizing: border-box;
+  border: none;
+  display: inline-flex;
+  text-align: center;
+  font-size: 12px;
+  flex-direction: row;
+  align-items: center;
+  margin:0em 0.5em;
+  margin-bottom: 1em;
+}
+
+button.connection-id{
+  cursor: pointer;
+}
+
+.connection-id>span{
+  color:#fff;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 1.3em;
+  vertical-align: middle;
+}
+
+.connection-id.red{
+  background: #d32f2f;
+}
+
+.connection-id.yellow{
+  background: #fbc02d;
+}
+
+.connection-id.blue{
+  background: #1976d2;
+}
+
+.connection-id.green{
+  background: #2e7d32;
+}
+
+.not-connected{
+  width:100%;
+  text-align: center;
+}
+
+.not-connected>.title{
+  font-size: 4em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  color:rgb(50,50,50);
+  margin-top: 0em;
+}
+
+.not-connected>.peer-list{
+  flex-direction: row;
+}
+
+.not-connected>h3{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 1.5em;
+  color:rgb(50,50,50);
+}
+
+.main{
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color: red;
+  flex-direction: row;
+  display: flex;
+}
+
+.chat{
+  flex-direction: column;
+  width:400px;
+  background-color: #fff;
+  height:100%;
+  display: flex;
+}
+
+.chat>.header{
+
+  padding: 1em 0em;
+  text-align: center;
+}
+
+.chat>.header>span{
+  font-size: 2em;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  color:rgb(50,50,50);
+}
+
+.chat>.scroll{
+  flex:1;
+  width:100%;
+  overflow-y: auto;
+  transform: rotate(180deg);
+  background-color: rgba(0,0,0,0.075);
+}
+
+.chat>.scroll>.history{
+  display: flex;
+  width:100%;
+  padding:0em 1em;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  transform: rotate(180deg);
+}
+
+.chat>.scroll>.history>.message{
+  border-radius: 1em;
+  padding: 1em 1.6em;
+  margin-bottom: 1em;
+  box-sizing: border-box;
+  display: inline-flex;
+  background-color: #8aa7fd;
+  align-self: flex-start;
+  border-bottom-left-radius: 0em;
+}
+
+.chat>.scroll>.history>.message.mine{
+  background-color: rgb(200,200,200);
+  align-self: flex-end;
+  border-bottom-left-radius: 1em;
+  border-bottom-right-radius: 0em;
+}
+
+.chat>.scroll>.history>.message>span{
+  font-size: 1.2em;
+  line-height: 1.75em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+
+.chat>.input{
+  width:100%;
+  display: flex;
+  padding-left: 1.5em;
+  box-sizing: border-box;
+  color:rgb(50,50,50);
+}
+
+.chat>.input>textarea{
+  flex:1;
+  border: none;
+  resize: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 1.5em;
+  outline: none;
+  padding: 0.7em 0em;
+}
+
+.chat>.input>.button-wrapper{
+  width:80px;
+  flex-direction: column;
+  padding: 1em 0em;
+  align-items: center;
+  text-align: center;
+}
+
+.chat>.input>.button-wrapper>button{
+  height:60px;
+  width:60px;
+  border-radius: 60px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 2em;
+
+  background: #396afc;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom right, #2948ff, #396afc);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom right, #2948ff, #396afc); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.video-wrapper{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-wrapper>.video-container{
+  flex:1;
+  display: flex;
+  width:100%;
+  background-color: rgb(0,0,0);
+}
+
+.video-wrapper>.video-container>video{
+  width:100%;
+}
+
+.video-wrapper>.video-container>.no-video{
+  width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-wrapper>.controls{
+  width:100%;
+  background-color: rgb(50,50,50);
+  padding: 2em 0em;
+  display: flex;
+}
+
+.video-wrapper>.controls .control-key.active{
+  border: 0.3em solid #396afc;
+  color: #396afc;
+}
+
+.video-wrapper>.controls .control-key{
+  min-width:4em;
+  height:4em;
+  border: none;
+  border-radius: 0.7em;
+  background: none;
+  border: 0.3em solid rgb(100,100,100);
+  color: rgb(100,100,100);
+  cursor: pointer;
+  outline: none;
+  margin:0.3em;
+}
+
+.video-wrapper>.controls .control-key>span{
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 2em;
+}
+
+.movement{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+.other-keys{
+  display: flex;
+  flex-direction: column;
+  width:50%;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.shift-margin{
+  margin-left: 1em;
+  margin-right: 0.2em;
+}
+
+.controlls-container{
+  max-width: 500px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+}
