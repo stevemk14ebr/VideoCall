@@ -1,5 +1,5 @@
 {
-  "name": "tele_pres_server",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,8 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
-    "signal.io": "0.0.6",
+    "express": ">=4.16.4",
+    "signal.io": ">=0.0.6",
     "simple-signal-server": "^2.1.0"
   }
 }

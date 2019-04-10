@@ -38,8 +38,8 @@ class VideoCall extends Component {
 			clientList: [],
 			otherId: null,
 			chatHistory: [
-				{is_me:false,message:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tortor est, porttitor ut erat in, volutpat ullamcorper nisl. Sed diam odio, interdum non purus vitae, bibendum mollis dui. Morbi non metus non sem suscipit consectetur. Donec quis mi nisl. Quisque pharetra ultrices arcu id sodales. Aliquam vulputate ipsum nisl, at volutpat diam lobortis vel. Sed aliquet in nisi sit amet tincidunt. Aliquam vehicula elit rutrum elit malesuada facilisis."},
-				{is_me:true,message:"Test"}
+				{is_me:false,message:"Hey from afar"},
+				{is_me:true,message:"What's up yo, mr far man"}
 			],
 			stream:null,
 			activeKeys: []
@@ -57,32 +57,27 @@ class VideoCall extends Component {
   }
 
 	onKeyUp(e){
-
 		let keys = [...this.state.activeKeys];
-
 		if (keys.indexOf( e.code ) != -1) {
 
 			console.log(`${e.code} released`);
-
 			keys.splice(keys.indexOf( e.code ),1);
 
 			this.setState({
+				...this.state,
 				activeKeys:keys
 			});
 		}
 	}
 
 	onKeyDown(e){
-
 		let keys = [...this.state.activeKeys];
-
 		if (keys.indexOf( e.code ) == -1) {
-
 			console.log(`${e.code} pressed`);
-
 			keys.push( e.code );
 
 			this.setState({
+				...this.state,
 				activeKeys:keys
 			});
 		}
@@ -91,7 +86,7 @@ class VideoCall extends Component {
 	componentDidMount(){
 		window.addEventListener('beforeunload', this.b_disconnect);
 
-		this.socket = io('http://localhost:3001');
+		this.socket = io('http://10.255.118.22:3001');
 		this.socket.on('connect', this.b_onConnect);
 
 		this.client = new SimpleSignalClient(this.socket) // Uses an existing socket.io-client instance
@@ -131,6 +126,11 @@ class VideoCall extends Component {
 		// we're receiving, get video stream (before accepting connection)
 		this.stream = await this.b_getMedia();
 
+		this.setState({
+			...this.state,
+			otherId: request.initiator
+		});
+
 		// pass stream to webrtc
 		const { peer } = await request.accept(undefined, {wrtc: wrtc, stream: this.stream});
 		this.b_initPeer(peer);
@@ -146,6 +146,7 @@ class VideoCall extends Component {
 
 	onStream(stream) {
 		this.setState({
+			...this.state,
 			stream
 		});
 	}
@@ -161,32 +162,32 @@ class VideoCall extends Component {
 		var dec = new TextDecoder("utf-8");
 		console.log(dec.decode(msg));
 
+		// add message to chat
 		let chatHistory = [...this.state.chatHistory];
-
 		chatHistory.push({
 			is_me: false,
 			message: dec.decode(msg)
 		});
 
 		this.setState({
+			...this.state,
 			chatHistory
 		});
 	}
 
 	sendMessage(msg) {
-
 		let chatHistory = [...this.state.chatHistory];
-
 		chatHistory.push({
 			is_me: true,
 			message: msg
 		});
 
 		this.setState({
+			...this.state,
 			chatHistory
 		});
 
-		//this.peer.send(msg);
+		this.peer.send(msg);
 	}
 
 	initPeer(peer) {
@@ -203,14 +204,13 @@ class VideoCall extends Component {
 		await this.b_startStream( otherId );
 
 		this.setState({
+			...this.state,
 			otherId
 		});
 	}
 
 	render() {
-
 		let socketID = (this.state.socket) ? this.state.socket.id : null;
-
 
 		if (!this.state.otherId){
 			return (
