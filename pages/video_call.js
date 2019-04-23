@@ -32,7 +32,6 @@ class VideoCall extends Component {
 		this.b_onKeyUp = this.onKeyUp.bind(this);
 		this.b_onKeyDown = this.onKeyDown.bind(this);
 
-
 		this.state = {
 			socket: null,
 			clientList: [],
@@ -62,6 +61,7 @@ class VideoCall extends Component {
 
 			console.log(`${e.code} released`);
 			keys.splice(keys.indexOf( e.code ),1);
+			this.socket.emit('keyup', {key: e.code});
 
 			this.setState({
 				...this.state,
@@ -75,6 +75,7 @@ class VideoCall extends Component {
 		if (keys.indexOf( e.code ) == -1) {
 			console.log(`${e.code} pressed`);
 			keys.push( e.code );
+			this.socket.emit('keydown', {key: e.code});
 
 			this.setState({
 				...this.state,
@@ -86,7 +87,7 @@ class VideoCall extends Component {
 	componentDidMount(){
 		window.addEventListener('beforeunload', this.b_disconnect);
 
-		this.socket = io('http://10.255.118.22:3001');
+		this.socket = io('http://10.253.25.195:3001');
 		this.socket.on('connect', this.b_onConnect);
 
 		this.client = new SimpleSignalClient(this.socket) // Uses an existing socket.io-client instance

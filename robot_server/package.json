@@ -1,0 +1,14 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "node drive.js"
+  },
+  "dependencies": {
+    "create2": "git+https://github.com/eliotlandrum/create2.git",
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0"
+  }
+}

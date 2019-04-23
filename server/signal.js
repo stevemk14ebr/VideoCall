@@ -6,9 +6,23 @@ app.get('/', function(req, res){
 
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
-io.on('connection', (socket) => 
-{ 
+io.on('connection', (socket) =>
+{
 	console.log('someone connected!');
+
+  socket.on('keyup', (response) => {
+    console.log('keyup', response);
+
+    // forward to robot server
+    socket.broadcast.emit('keyup', response);
+  });
+
+  socket.on('keydown', (response) => {
+    console.log('keydown', response);
+
+    // forward to robot server
+    socket.broadcast.emit('keydown', response);
+  });
 });
 
 const signalServer = require('simple-signal-server')(io)
