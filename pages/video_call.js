@@ -87,7 +87,7 @@ class VideoCall extends Component {
 	componentDidMount(){
 		window.addEventListener('beforeunload', this.b_disconnect);
 
-		this.socket = io('http://10.253.25.195:3001');
+		this.socket = io('http://localhost:3001');
 		this.socket.on('connect', this.b_onConnect);
 
 		this.client = new SimpleSignalClient(this.socket) // Uses an existing socket.io-client instance
@@ -111,7 +111,7 @@ class VideoCall extends Component {
 
 	async getMedia(){
 		return new Promise((resolve, reject) => {
-			getUserMedia({video: true, audio: false}, function (err, stream) {
+			getUserMedia({video: true, audio: true}, function (err, stream) {
 				if(err) {
 					console.log('failed to get video stream');
 					reject(err);
