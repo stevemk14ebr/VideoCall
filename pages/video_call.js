@@ -191,7 +191,13 @@ class VideoCall extends Component {
 		this.peer.send(msg);
 	}
 
-	initPeer(peer) {
+	async initPeer(peer) {
+		await new Promise((resolve, reject) => {
+				peer.on('connect', () => {
+					resolve();
+				});
+		});
+
 		this.peer = peer; // this is a fully-signaled simple-peer object
 		this.peer.on('stream', this.b_onStream);
 		this.peer.on('data', this.b_onMessage);
