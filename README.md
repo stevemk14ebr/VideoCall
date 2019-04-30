@@ -1,5 +1,5 @@
 # VideoCall
-JS WebRTC video chat client + relay server. Made to drive a tele-presence roomba robot.
+JS WebRTC video chat client + relay server. Made to drive a tele-presence roomba robot via a web UI.
 
 # Usage
 Plug the serial cable from the roomba into the iRobot and the other end into the machine that runs the 'robot_server'. 'npm run dev' in the robot server folder on that machine will start the serial control server. That will then connect to the 'server' which can be started by the same command, make sure the 'robot_server' points to this address. Finally start the frontend by running the same command in the root folder, make sure it points to the server. This requires NPM 10, and should run fine on any OS including ARM.
